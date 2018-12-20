@@ -6,6 +6,7 @@ import java.util.Properties;
 
 import org.springframework.web.client.RestTemplate;
 
+import fr.gaminglab.admin.dao.mongo.DaoBoutique;
 import fr.gaminglab.admin.entities.GenericDTO;
 
 public class ServiceBoutiqueImpl implements IServiceBoutique {
@@ -15,6 +16,7 @@ public class ServiceBoutiqueImpl implements IServiceBoutique {
 	private static final String CATEGORIE = "/categorie";
 	private RestTemplate restTemplate = new RestTemplate();
 	private String base_url = "http://localhost:8182/gaminglab/boutique";
+	private DaoBoutique daoBoutique;
 
 	@Override
 	public Integer getTotalArticlesAchatByMonth(Integer month) {
@@ -28,6 +30,8 @@ public class ServiceBoutiqueImpl implements IServiceBoutique {
 		//		--> Map<Integer, Integer> : 
 		// 			Clé : id de l'Article
 		//			Valeur : nombre de fois l'article a été acheté
+		
+		
 		
 		// 2- Webservice : pour toutes clés de la Map<Integer, Integer> : 
 		//		a) getArticleById() : 
