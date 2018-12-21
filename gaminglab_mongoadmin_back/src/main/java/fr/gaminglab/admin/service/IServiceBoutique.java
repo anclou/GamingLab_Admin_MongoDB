@@ -3,7 +3,7 @@ package fr.gaminglab.admin.service;
 import java.util.HashMap;
 import java.util.List;
 
-import fr.gaminglab.admin.entities.GenericDTO;
+import fr.gaminglab.admin.dto.GenericDTO;
 
 public interface IServiceBoutique {
 	public Integer getTotalArticlesAchatByMonth(Integer month);

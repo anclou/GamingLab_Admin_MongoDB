@@ -64,9 +64,9 @@ public class DaoBoutique extends AbstractDAO {
 		    @Override
 		    public void apply(final Document document) {
 		    	topArt = new TopArticleAchat();
-		    	
-		    	Double idArt = (Double)document.get("_id");
-		    	topArt.setIdArticle((Integer)idArt.intValue());
+		    	//System.out.println("_id : "+document.get("_id").getClass());
+		    	//Double idArt = (Double)document.get("_id");
+		    	topArt.setIdArticle((Integer)document.get("_id"));
 		    	topArt.setNombreAchat((Integer)document.get("nombreAchat"));
 				results.add(topArt);
 		    }

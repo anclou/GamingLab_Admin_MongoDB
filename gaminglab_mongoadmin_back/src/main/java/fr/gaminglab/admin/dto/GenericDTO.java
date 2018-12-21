@@ -1,4 +1,4 @@
-package fr.gaminglab.admin.entities;
+package fr.gaminglab.admin.dto;
 
 public class GenericDTO {
 	private Integer id;

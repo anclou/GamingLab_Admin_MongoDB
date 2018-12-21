@@ -2,7 +2,7 @@ package fr.gaminglab.admin.service;
 
 import java.util.List;
 
-import fr.gaminglab.admin.entities.GenericDTO;
+import fr.gaminglab.admin.dto.GenericDTO;
 
 public interface IServiceForum {
 	public Integer getTotalCategoriesConsulterByMonth (Integer month);

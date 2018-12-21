@@ -10,7 +10,13 @@
 	</properties>
   
   <dependencies>
-  	<!-- mongoDB -->
+  		<!-- Projet Entity -->
+  		<dependency>
+  			<groupId>fr.gaminglab</groupId>
+  			<artifactId>gaminglab_entity</artifactId>
+  			<version>0.0.1-SNAPSHOT</version>
+  		</dependency>
+  		<!-- mongoDB -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>

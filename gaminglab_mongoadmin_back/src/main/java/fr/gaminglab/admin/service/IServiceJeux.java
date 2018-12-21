@@ -2,7 +2,7 @@ package fr.gaminglab.admin.service;
 
 import java.util.List;
 
-import fr.gaminglab.admin.entities.GenericDTO;
+import fr.gaminglab.admin.dto.GenericDTO;
 
 public interface IServiceJeux {
 	//Nombre total de parties jouées dans le mois
