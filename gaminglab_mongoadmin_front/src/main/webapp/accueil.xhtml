@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -41,31 +42,15 @@
 							<th class="tg-vox4" colspan="3">Les articles les plus
 								achetés</th>
 						</tr>
-						<tr>
-							<td class="tg-1wig">1er</td>
-							<td class="tg-0lax">Nom du produit</td>
-							<td class="tg-0lax">500 pièces</td>
-						</tr>
-						<tr>
-							<td class="tg-1wig">2ème</td>
-							<td class="tg-0lax">Nom du produit</td>
-							<td class="tg-0lax">400 pièces</td>
-						</tr>
-						<tr>
-							<td class="tg-1wig">3ème</td>
-							<td class="tg-0lax">Nom du produit</td>
-							<td class="tg-0lax">300 pièces</td>
-						</tr>
-						<tr>
-							<td class="tg-1wig">4ème</td>
-							<td class="tg-0lax">Nom du produit</td>
-							<td class="tg-0lax">200 pièces</td>
-						</tr>
-						<tr>
-							<td class="tg-1wig">5ème</td>
-							<td class="tg-0lax">Nom du produit</td>
-							<td class="tg-0lax">100 pièces</td>
-						</tr>
+						
+						<ui:repeat var="topArticle" value="#{boutiqueManagedBean.listeTopArticlesAchat}" varStatus="status">
+							<tr>
+								<td class="tg-1wig">#{status.index+1}</td>
+								<td class="tg-0lax">#{topArticle.libelle}</td>
+								<td class="tg-0lax">#{topArticle.nombre}</td>
+							</tr>
+						</ui:repeat>
+						
 					</table>
 				</div>
 			</div>

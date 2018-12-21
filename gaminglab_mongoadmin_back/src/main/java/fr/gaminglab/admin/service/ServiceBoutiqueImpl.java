@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import fr.gaminglab.admin.dao.mongo.DaoBoutique;
@@ -12,6 +13,7 @@ import fr.gaminglab.admin.dto.GenericDTO;
 import fr.gaminglab.admin.entities.TopArticleAchat;
 import fr.gaminglab.entity.boutique.Article;
 
+@Component
 public class ServiceBoutiqueImpl implements IServiceBoutique {
 	
 	private static final String SLASH = "/";
