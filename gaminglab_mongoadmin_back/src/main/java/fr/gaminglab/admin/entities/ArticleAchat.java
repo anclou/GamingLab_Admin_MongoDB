@@ -1,7 +1,5 @@
 package fr.gaminglab.admin.entities;
 
-import java.util.Date;
-
 public class ArticleAchat {
 
 	private String id;

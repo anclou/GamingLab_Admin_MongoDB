@@ -1,7 +1,6 @@
 package fr.gaminglab.admin.dao.mongo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,5 +73,14 @@ public class DaoBoutique extends AbstractDAO {
 		});
 		
 		return results;
+	}
+	
+	public ArticleAchat create(ArticleAchat articleAchat) {
+		// Construction de l'objet
+		Document doc = new Document("idArticle", articleAchat.getIdArticle())
+				.append("idUtilisateur", articleAchat.getIdUtilisateur())
+				.append("dateAchat", articleAchat.getDateAchat());
+		coll.insertOne(doc);
+		return articleAchat;
 	}
 }
