@@ -8,8 +8,9 @@ import java.util.Properties;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import fr.gaminglab.admin.dao.mongo.DaoBoutique;
+import fr.gaminglab.admin.dao.mongo.DaoArticleAchat;
 import fr.gaminglab.admin.dto.GenericDTO;
+import fr.gaminglab.admin.dto.TotalDTO;
 import fr.gaminglab.admin.entities.TopArticleAchat;
 import fr.gaminglab.entity.boutique.Article;
 
@@ -21,11 +22,11 @@ public class ServiceBoutiqueImpl implements IServiceBoutique {
 	private static final String CATEGORIE = "/categorie";
 	private RestTemplate restTemplate = new RestTemplate();
 	private String base_url = "http://localhost:8182/gaminglab/boutique";
-	private DaoBoutique daoBoutique = new DaoBoutique();
+	private DaoArticleAchat daoArticleAchat = new DaoArticleAchat();
 
 	@Override
-	public Integer getTotalArticlesAchatByMonth(Integer month) {
-		return null;
+	public List<TotalDTO> getTotalArticlesAchat() {
+		return daoArticleAchat.getTotalArticlesAchat();
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class ServiceBoutiqueImpl implements IServiceBoutique {
 		// 			Clé : id de l'Article
 		//			Valeur : nombre de fois l'article a été acheté
 		
-		List<TopArticleAchat> listeTopArticles = daoBoutique.getTop5ArticlesAchat();
+		List<TopArticleAchat> listeTopArticles = daoArticleAchat.getTop5ArticlesAchat();
 		
 		// 2- Webservice : pour toutes clés de la Map<Integer, Integer> : 
 		//		a) getArticleById() : 

@@ -2,7 +2,7 @@ package fr.gaminglab.admin.data;
 
 import java.util.Random;
 
-import fr.gaminglab.admin.dao.mongo.DaoBoutique;
+import fr.gaminglab.admin.dao.mongo.DaoArticleAchat;
 import fr.gaminglab.admin.dao.mongo.DaoJeux;
 import fr.gaminglab.admin.entities.ArticleAchat;
 import fr.gaminglab.admin.entities.JeuJouer;
@@ -17,7 +17,7 @@ public class GenerationDataMongo {
 
 	public static void main(String[] args) {
 		System.out.println("coucou");
-		DaoBoutique daoBoutique = new DaoBoutique();
+		DaoArticleAchat daoBoutique = new DaoArticleAchat();
 		DaoJeux daoJeux = new DaoJeux();
 		for (int mois = 1; mois <= 12; mois++) {
 
@@ -47,7 +47,7 @@ public class GenerationDataMongo {
 		return new JeuJouer(idJeuRandom, idUtilisateurRandom, mois);
 	}
 
-	private static void createArticleAchat(DaoBoutique daoBoutique, int mois) {
+	private static void createArticleAchat(DaoArticleAchat daoBoutique, int mois) {
 		ArticleAchat articleAchat = getArticleAchat(mois);
 		daoBoutique.create(articleAchat);
 		System.out.println(articleAchat.toString());

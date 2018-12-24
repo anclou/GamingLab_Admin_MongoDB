@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import fr.gaminglab.admin.dto.GenericDTO;
+import fr.gaminglab.admin.dto.TotalDTO;
 
 public interface IServiceBoutique {
-	public Integer getTotalArticlesAchatByMonth(Integer month);
+	public List<TotalDTO> getTotalArticlesAchat();
 	
 	public List<GenericDTO> getTop5ArticlesAchat();
 	
 	public Integer getTotalArticlesVisiteByMonth (Integer month);
 	
-	List<GenericDTO> getTop5ArticlesVisite();
+	public List<GenericDTO> getTop5ArticlesVisite();
 }

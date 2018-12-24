@@ -14,16 +14,41 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import fr.gaminglab.admin.dao.AbstractDAO;
+import fr.gaminglab.admin.dto.TotalDTO;
 import fr.gaminglab.admin.entities.ArticleAchat;
 import fr.gaminglab.admin.entities.TopArticleAchat;
 
-public class DaoBoutique extends AbstractDAO {
+public class DaoArticleAchat extends AbstractDAO {
 	
-	public DaoBoutique() {
+	public DaoArticleAchat() {
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase db = mongoClient.getDatabase("gaminglab-admin");
 		MongoCollection<Document> coll = db.getCollection("articlesAchat");
 		setDbCollection(coll);
+	}
+	
+	public List<TotalDTO> getTotalArticlesAchat() {
+		List<Document> operations = new ArrayList<Document>();
+
+		final List<TotalDTO> results = new ArrayList<TotalDTO>();
+
+		Document group = Document.parse("{$group : { '_id' : '$dateAchat', 'nombre' : {'$sum': 1} } }");
+		operations.add(group);
+		
+		AggregateIterable<Document> iterable = coll.aggregate(operations);
+		
+		iterable.forEach(new Block<Document>() {
+			TotalDTO totalArtAchat=null;
+		    @Override
+		    public void apply(final Document document) {
+		    	totalArtAchat = new TotalDTO();
+		    	totalArtAchat.setMois((Integer)document.get("_id"));
+		    	totalArtAchat.setNombre((Integer)document.get("nombre"));
+				results.add(totalArtAchat);
+		    }
+		});
+		
+		return results;
 	}
 	
 	public List<TopArticleAchat> getTop5ArticlesAchat() {
@@ -33,7 +58,6 @@ public class DaoBoutique extends AbstractDAO {
 		List<Document> operations = new ArrayList<Document>();
 
 		final List<TopArticleAchat> results = new ArrayList<TopArticleAchat>();
-		Map<Integer, Integer> mapIdArticleNombreAchat = new HashMap<Integer, Integer>();
 
 		Document group = Document.parse("{$group : { '_id' : '$idArticle', 'nombreAchat' : {'$sum': 1} } }");
 		operations.add(group);
