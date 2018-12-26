@@ -20,7 +20,6 @@ public class ServiceBoutiqueImpl implements IServiceBoutique {
 	
 	private static final String SLASH = "/";
 	private static final String ARTICLE = "/article";
-	private static final String CATEGORIE = "/categorie";
 	private RestTemplate restTemplate = new RestTemplate();
 	private String base_url = "http://localhost:8182/gaminglab/boutique";
 	private DaoArticleAchat daoArticleAchat = new DaoArticleAchat();

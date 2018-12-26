@@ -3,9 +3,11 @@ package fr.gaminglab.admin.service;
 import java.util.List;
 
 import fr.gaminglab.admin.dto.GenericDTO;
+import fr.gaminglab.admin.dto.TotalDTO;
+import fr.gaminglab.admin.entities.CategorieConsulter;
 
 public interface IServiceForum {
-	public Integer getTotalCategoriesConsulterByMonth (Integer month);
+	public List<TotalDTO> getTotalCategoriesConsulter();
 	
 	public List<GenericDTO> getTop5CategoriesConsulter();
 	
@@ -14,4 +16,6 @@ public interface IServiceForum {
 	public List<GenericDTO> getTop5SujetsNoter();
 	
 	public List<GenericDTO> getTop5JoueurCommenter();
+	
+	public CategorieConsulter create (CategorieConsulter categorieConsulter);
 }

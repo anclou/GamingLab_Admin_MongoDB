@@ -2,14 +2,13 @@ package fr.gaminglab.admin.entities;
 
 public class JeuJouer {
 
+	private Integer id;
 	private Integer idJeu;
 	private Integer idUtilisateur;
 	private Integer moisJouer;
-	private Integer id;
 	
-	
-	public JeuJouer(Integer idJeu, Integer idUtilisateur, Integer mois) {
-		super();
+	public JeuJouer(Integer id, Integer idJeu, Integer idUtilisateur, Integer mois) {
+		this.id = id;
 		this.idJeu = idJeu;
 		this.idUtilisateur = idUtilisateur;
 		this.moisJouer = mois;

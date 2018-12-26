@@ -1,5 +1,7 @@
-body {
+h3 {
 	font-family: 'Roboto', Arial, sans-serif;
+	text-align: center;
+	font-size: 2em;
 }
 
 .tg {
@@ -10,7 +12,7 @@ body {
 }
 
 .tg td {
-	font-family: Arial, sans-serif;
+	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 14px;
 	padding: 10px 5px;
 	border-style: solid;
@@ -21,7 +23,7 @@ body {
 }
 
 .tg th {
-	font-family: Arial, sans-serif;
+	font-family:  Arial, sans-serif;
 	font-size: 14px;
 	font-weight: normal;
 	padding: 10px 5px;
@@ -35,17 +37,17 @@ body {
 .tg .tg-1wig {
 	font-weight: bold;
 	text-align: left;
-	vertical-align: top
+	vertical-align: top;
 }
 
 .tg .tg-vox4 {
 	font-weight: bold;
 	font-size: 16px;
 	text-align: left;
-	vertical-align: top
+	vertical-align: top;
 }
 
 .tg .tg-0lax {
 	text-align: left;
-	vertical-align: top
+	vertical-align: top;
 }
