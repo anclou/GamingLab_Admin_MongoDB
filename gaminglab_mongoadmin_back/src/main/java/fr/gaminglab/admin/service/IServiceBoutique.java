@@ -11,7 +11,7 @@ public interface IServiceBoutique {
 	
 	public List<GenericDTO> getTop5ArticlesAchat();
 	
-	public Integer getTotalArticlesVisiteByMonth (Integer month);
+	public List<TotalDTO> getTotalArticlesVisite();
 	
 	public List<GenericDTO> getTop5ArticlesVisite();
 }

@@ -3,8 +3,10 @@ package fr.gaminglab.admin.data;
 import java.util.Random;
 
 import fr.gaminglab.admin.dao.mongo.DaoArticleAchat;
+import fr.gaminglab.admin.dao.mongo.DaoArticleVisite;
 import fr.gaminglab.admin.dao.mongo.DaoJeux;
 import fr.gaminglab.admin.entities.ArticleAchat;
+import fr.gaminglab.admin.entities.ArticleVisite;
 import fr.gaminglab.admin.entities.JeuJouer;
 
 public class GenerationDataMongo {
@@ -19,6 +21,8 @@ public class GenerationDataMongo {
 		System.out.println("coucou");
 		DaoArticleAchat daoBoutique = new DaoArticleAchat();
 		DaoJeux daoJeux = new DaoJeux();
+		DaoArticleVisite daoArticleVisite = new DaoArticleVisite();
+		
 		for (int mois = 1; mois <= 12; mois++) {
 			//Modif Chris 26/12
 			Random random = new Random();
@@ -28,6 +32,7 @@ public class GenerationDataMongo {
 			for (int j = 0; j < nbRandom; j++) {
 				createArticleAchat(daoBoutique, mois);
 				createJeuJouer(daoJeux, mois);
+				createArticleVisite(daoArticleVisite, mois);
 			}
 		}
 
@@ -69,6 +74,25 @@ public class GenerationDataMongo {
 		}while(idArticleRandom == 0 || idUtilisateurRandom == 0);
 
 		return new ArticleAchat(null, idArticleRandom, idUtilisateurRandom, mois);
+	}
+	
+	//ArticleVisite
+	private static void createArticleVisite (DaoArticleVisite daoArticleVisite, int mois) {
+		ArticleVisite articleVisite = getArticleVisite(mois);
+		daoArticleVisite.create(articleVisite);
+		System.out.println(articleVisite.toString());
+	}
+	
+	public static ArticleVisite getArticleVisite(Integer mois) {
+		Integer idArticleRandom;
+		Integer idUtilisateurRandom;
+		Random random = new Random();
+		do{
+			idUtilisateurRandom = random.nextInt(MAX_ID_UTILISATEUR);
+			idArticleRandom = random.nextInt(MAX_ID_ARTICLE);
+		}while(idArticleRandom == 0 || idUtilisateurRandom == 0);
+
+		return new ArticleVisite (null, idArticleRandom, idUtilisateurRandom, mois);
 	}
 	
 }
