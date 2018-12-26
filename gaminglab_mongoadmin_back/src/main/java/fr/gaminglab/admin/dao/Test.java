@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.gaminglab.admin.dao.mongo.DaoArticleAchat;
 import fr.gaminglab.admin.dto.GenericDTO;
-import fr.gaminglab.admin.entities.TopArticleAchat;
+import fr.gaminglab.admin.entities.Top;
 import fr.gaminglab.admin.service.IServiceBoutique;
 import fr.gaminglab.admin.service.ServiceBoutiqueImpl;
 

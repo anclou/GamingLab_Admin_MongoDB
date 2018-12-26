@@ -19,25 +19,30 @@ public class BoutiqueManagedBean {
 
 	private LineChartModel chartArticlesAchat;
 	private ServiceBoutiqueImpl serviceBoutique;
-	public List<GenericDTO> listeTopArticlesAchat;
-	public List<TotalDTO> listeTotalArticlesAchat;
+	private List<GenericDTO> listeTopArticlesAchat;
+	private List<TotalDTO> listeTotalArticlesAchat;
+	private LineChartModel chartArticlesVisite;
+	private List<GenericDTO> listeTopArticlesVisite;
+	private List<TotalDTO> listeTotalArticlesVisite;
 
 	public BoutiqueManagedBean() {
 		serviceBoutique = new ServiceBoutiqueImpl();
 		
+		// *
+		// * ARTICLE ACHAT
+		// *
+		
 		//Graph Article Achat : total Articles Achat par mois
 		chartArticlesAchat = new LineChartModel();
-		LineChartSeries serie = new LineChartSeries();
+		LineChartSeries serieAchat = new LineChartSeries();
 		listeTotalArticlesAchat = serviceBoutique.getTotalArticlesAchat();
 		Integer minAchat = null;
 		Integer maxAchat = null;
 		
-		serie.setLabel("Articles vendus");
+		serieAchat.setLabel("Achats");
 		
 		for (TotalDTO total : listeTotalArticlesAchat) {
-			serie.set(total.getMois(), total.getNombre());
-			System.out.println("mois : "+total.getMois());
-			System.out.println("nombre : "+total.getNombre());
+			serieAchat.set(total.getMois(), total.getNombre());
 			
 			if (minAchat != null) {
 				if (total.getNombre() < minAchat) {
@@ -55,34 +60,81 @@ public class BoutiqueManagedBean {
 				maxAchat = total.getNombre();
 			}
 		}
-		
-		System.out.println("minAchat "+minAchat);
-		System.out.println("maxAchat "+maxAchat);
 
-		chartArticlesAchat.addSeries(serie);
+		chartArticlesAchat.addSeries(serieAchat);
 		chartArticlesAchat.setTitle("Articles vendus");
 		chartArticlesAchat.setLegendPosition("e");
-		Axis yAxis = chartArticlesAchat.getAxis(AxisType.Y);
+		Axis yAxisAchat = chartArticlesAchat.getAxis(AxisType.Y);
 		
 		if (minAchat != null && maxAchat != null) {
-			yAxis.setMin(minAchat-10);
-			yAxis.setMax(maxAchat+10);	
+			yAxisAchat.setMin(minAchat-10);
+			yAxisAchat.setMax(maxAchat+10);	
 		}
 		
 		//Liste des 5 articles les plus vendus
 		listeTopArticlesAchat = serviceBoutique.getTop5ArticlesAchat();
+		
+		// *
+		// * ARTICLES VISITE
+		// *
+		
+		//Graph Article Achat : total Articles Achat par mois
+		chartArticlesVisite = new LineChartModel();
+		LineChartSeries serieVisite = new LineChartSeries();
+		listeTotalArticlesVisite = serviceBoutique.getTotalArticlesVisite();
+		Integer minVisite = null;
+		Integer maxVisite = null;
+		
+		serieVisite.setLabel("Consultations");
+		
+		for (TotalDTO total : listeTotalArticlesVisite) {
+			serieVisite.set(total.getMois(), total.getNombre());
+			
+			if (minVisite != null) {
+				if (total.getNombre() < minVisite) {
+					minVisite = total.getNombre();
+				}
+			} else {
+				minVisite = total.getNombre();
+			}
+			
+			if (maxVisite != null) {
+				if (total.getNombre() > maxVisite) {
+					maxVisite = total.getNombre();
+				}
+			} else {
+				maxVisite = total.getNombre();
+			}
+		}
+
+		chartArticlesVisite.addSeries(serieVisite);
+		chartArticlesVisite.setTitle("Articles visités");
+		chartArticlesVisite.setLegendPosition("e");
+		Axis yAxisVisite = chartArticlesVisite.getAxis(AxisType.Y);
+		
+		if (minVisite != null && maxVisite != null) {
+			yAxisVisite.setMin(minVisite-10);
+			yAxisVisite.setMax(maxVisite+10);	
+		}
+		
+		//Liste des 5 articles les plus visités
+		listeTopArticlesVisite = serviceBoutique.getTop5ArticlesVisite();
 	}
 
 	public List<GenericDTO> getListeTopArticlesAchat() {
 		return listeTopArticlesAchat;
 	}
-	
-//	public List<TotalDTO> getListeTotalArticlesAchat() {
-//		return listeTotalArticlesAchat;
-//	}
 
 	public LineChartModel getChartArticlesAchat() {
 		return chartArticlesAchat;
+	}
+	
+	public LineChartModel getChartArticlesVisite() {
+		return chartArticlesVisite;
+	}
+
+	public List<GenericDTO> getListeTopArticlesVisite() {
+		return listeTopArticlesVisite;
 	}
 
 }
