@@ -13,15 +13,19 @@ public class GenerationDataMongo {
 	private static final Integer MAX_ID_UTILISATEUR = 21 + 1;
 	private static final Integer MAX_ID_JEU = 14 + 1;
 	private static final Integer MAX_ID_CATEGORIE = 6 + 1;
-	private static final Integer NOMBRE_DONNEES_PAR_MOI = 10;
+	private static final Integer NOMBRE_DONNEES_PAR_MOIS = 40;
 
 	public static void main(String[] args) {
 		System.out.println("coucou");
 		DaoArticleAchat daoBoutique = new DaoArticleAchat();
 		DaoJeux daoJeux = new DaoJeux();
 		for (int mois = 1; mois <= 12; mois++) {
-
-			for (int j = 0; j <= NOMBRE_DONNEES_PAR_MOI; j++) {
+			//Modif Chris 26/12
+			Random random = new Random();
+			Integer nbRandom = random.nextInt(NOMBRE_DONNEES_PAR_MOIS);
+			System.out.println("nbRandom = "+nbRandom);
+			
+			for (int j = 0; j < nbRandom; j++) {
 				createArticleAchat(daoBoutique, mois);
 				createJeuJouer(daoJeux, mois);
 			}
@@ -29,6 +33,7 @@ public class GenerationDataMongo {
 
 	}
 
+	//JeuJouer
 	private static void createJeuJouer(DaoJeux daoJeux, int mois) {
 		JeuJouer jeuJouer = getJeuJouer(mois);
 		daoJeux.create(jeuJouer);
@@ -47,6 +52,7 @@ public class GenerationDataMongo {
 		return new JeuJouer(idJeuRandom, idUtilisateurRandom, mois);
 	}
 
+	//ArticleAchat
 	private static void createArticleAchat(DaoArticleAchat daoBoutique, int mois) {
 		ArticleAchat articleAchat = getArticleAchat(mois);
 		daoBoutique.create(articleAchat);

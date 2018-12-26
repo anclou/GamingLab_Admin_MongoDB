@@ -36,6 +36,8 @@ public class BoutiqueManagedBean {
 		
 		for (TotalDTO total : listeTotalArticlesAchat) {
 			serie.set(total.getMois(), total.getNombre());
+			System.out.println("mois : "+total.getMois());
+			System.out.println("nombre : "+total.getNombre());
 			
 			if (minAchat != null) {
 				if (total.getNombre() < minAchat) {
@@ -54,28 +56,17 @@ public class BoutiqueManagedBean {
 			}
 		}
 		
-		//series1.setLabel("Series 1");
-//		serie.set(1, 2);
-//		serie.set(2, 1);
-//		serie.set(3, 3);
-//		serie.set(4, 6);
-//		serie.set(5, 8);
-//		LineChartSeries series2 = new LineChartSeries();
-//		series2.setLabel("Series 2");
-//		series2.set(1, 6);
-//		series2.set(2, 3);
-//		series2.set(3, 2);
-//		series2.set(4, 7);
-//		series2.set(5, 9);
+		System.out.println("minAchat "+minAchat);
+		System.out.println("maxAchat "+maxAchat);
+
 		chartArticlesAchat.addSeries(serie);
-		//chartArticlesAchat.addSeries(series2);
 		chartArticlesAchat.setTitle("Articles vendus");
 		chartArticlesAchat.setLegendPosition("e");
 		Axis yAxis = chartArticlesAchat.getAxis(AxisType.Y);
 		
 		if (minAchat != null && maxAchat != null) {
-			yAxis.setMin(minAchat);
-			yAxis.setMax(maxAchat);	
+			yAxis.setMin(minAchat-10);
+			yAxis.setMax(maxAchat+10);	
 		}
 		
 		//Liste des 5 articles les plus vendus
