@@ -4,10 +4,13 @@ import java.util.Random;
 
 import fr.gaminglab.admin.dao.mongo.DaoArticleAchat;
 import fr.gaminglab.admin.dao.mongo.DaoArticleVisite;
-import fr.gaminglab.admin.dao.mongo.DaoJeux;
+import fr.gaminglab.admin.dao.mongo.DaoCategorieConsulter;
+import fr.gaminglab.admin.dao.mongo.DaoJeuJouer;
 import fr.gaminglab.admin.entities.ArticleAchat;
 import fr.gaminglab.admin.entities.ArticleVisite;
+import fr.gaminglab.admin.entities.CategorieConsulter;
 import fr.gaminglab.admin.entities.JeuJouer;
+import fr.gaminglab.admin.service.ServiceForumImpl;
 
 public class GenerationDataMongo {
 
@@ -20,26 +23,27 @@ public class GenerationDataMongo {
 	public static void main(String[] args) {
 		System.out.println("coucou");
 		DaoArticleAchat daoBoutique = new DaoArticleAchat();
-		DaoJeux daoJeux = new DaoJeux();
+		DaoJeuJouer daoJeux = new DaoJeuJouer();
 		DaoArticleVisite daoArticleVisite = new DaoArticleVisite();
+		ServiceForumImpl serviceForum = new ServiceForumImpl();
 		
 		for (int mois = 1; mois <= 12; mois++) {
 			//Modif Chris 26/12
 			Random random = new Random();
 			Integer nbRandom = random.nextInt(NOMBRE_DONNEES_PAR_MOIS);
-			System.out.println("nbRandom = "+nbRandom);
 			
 			for (int j = 0; j < nbRandom; j++) {
 				createArticleAchat(daoBoutique, mois);
 				createJeuJouer(daoJeux, mois);
 				createArticleVisite(daoArticleVisite, mois);
+				createCategorieConsulter(serviceForum, mois);
 			}
 		}
 
 	}
 
 	//JeuJouer
-	private static void createJeuJouer(DaoJeux daoJeux, int mois) {
+	private static void createJeuJouer(DaoJeuJouer daoJeux, int mois) {
 		JeuJouer jeuJouer = getJeuJouer(mois);
 		daoJeux.create(jeuJouer);
 		System.out.println(jeuJouer.toString());
@@ -54,7 +58,7 @@ public class GenerationDataMongo {
 			idJeuRandom = random.nextInt(MAX_ID_JEU);
 		}while(idJeuRandom == 0 || idUtilisateurRandom == 0);
 
-		return new JeuJouer(idJeuRandom, idUtilisateurRandom, mois);
+		return new JeuJouer(null, idJeuRandom, idUtilisateurRandom, mois);
 	}
 
 	//ArticleAchat
@@ -93,6 +97,25 @@ public class GenerationDataMongo {
 		}while(idArticleRandom == 0 || idUtilisateurRandom == 0);
 
 		return new ArticleVisite (null, idArticleRandom, idUtilisateurRandom, mois);
+	}
+	
+	//CategorieConsulter
+	private static void createCategorieConsulter (ServiceForumImpl serviceForum, int mois) {
+		CategorieConsulter categorieConsulter = getCategorieConsulter(mois);
+		serviceForum.create(categorieConsulter);
+		System.out.println(categorieConsulter.toString());
+	}
+	
+	public static CategorieConsulter getCategorieConsulter(Integer mois) {
+		Integer idCategorieRandom;
+		Integer idUtilisateurRandom;
+		Random random = new Random();
+		do{
+			idUtilisateurRandom = random.nextInt(MAX_ID_UTILISATEUR);
+			idCategorieRandom = random.nextInt(MAX_ID_CATEGORIE);
+		}while(idCategorieRandom == 0 || idUtilisateurRandom == 0);
+
+		return new CategorieConsulter (null, idCategorieRandom, idUtilisateurRandom, mois);
 	}
 	
 }

@@ -29,7 +29,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>accueil.xhtml</welcome-file>
+		<welcome-file>boutique.xhtml</welcome-file>
 	</welcome-file-list>
 
 	<context-param>

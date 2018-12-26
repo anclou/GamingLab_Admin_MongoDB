@@ -6,14 +6,15 @@
 
 <h:head>
 	<title>Dashboard Administrateur</title>
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+	<f:facet name="first">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+	</f:facet>
 	<f:facet name="last">
 		<link rel="stylesheet" type="text/css" href="tableau.css" />
 	</f:facet>
 </h:head>
 
 <h:body>
-	<h3>Dashboard Administrateur</h3>
 
 	<h:form>
 		<p:tabMenu activeIndex="#{param.i}" id="xyz">
@@ -29,8 +30,10 @@
 		</p:tabMenu>
 	</h:form>
 
+	
+	
 	<h:form>
-
+		<h3 id="titre">Statistiques Boutique</h3>
 		<div class="ui-grid" style="margin-top: 60px">
 			<div class="ui-grid-row">
 
@@ -42,8 +45,7 @@
 				<div class="ui-grid-col-3" style="margin-top: 90px">
 					<table class="tg">
 						<tr>
-							<th class="tg-vox4" colspan="3">Les articles les plus
-								achetés</th>
+							<th class="tg-vox4" colspan="3">Les articles les plus achetés</th>
 						</tr>
 						
 						<ui:repeat var="topArticle" value="#{boutiqueManagedBean.listeTopArticlesAchat}" varStatus="status">
