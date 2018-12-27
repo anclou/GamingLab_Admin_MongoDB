@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="#{layoutMB.template}">
+
+	<ui:define name="head">
+		<title>GamingLab Admin</title>
+	</ui:define>
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml"></ui:include>
+	</ui:define>
+
+	<ui:define name="title">
+		<h2 id="titre" class="align-center">Statistiques Jeux</h2>
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form>
+			<div class="ui-grid" style="margin-top: 10px">
+				<div class="ui-grid-row">
+
+					<div class="ui-grid-col-9">
+						<p:chart type="line" model="#{jeuxManagedBean.chartJeuJouer}"
+							style="height:600px; width:95%;" />
+					</div>
+					<div class="ui-grid-col-3" style="margin-top: 30px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les 5 jeux les plus joués</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<TBODY>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom du jeu</th>
+											<th style="width: 150px">Nb de parties jouées</th>
+
+										</tr>
+										<ui:repeat var="topArticle"
+											value="#{jeuxManagedBean.listeTopJeuxJouer}"
+											varStatus="status">
+											<tr>
+												<td class="tg-1wig">#{status.index+1}</td>
+												<td class="tg-0lax">#{topArticle.libelle}</td>
+												<td class="tg-0lax">#{topArticle.nombre}</td>
+											</tr>
+										</ui:repeat>
+									</TBODY>
+								</table>
+							</div>
+						</div>
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les 5 plus gros joueurs</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<TBODY>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Pseudo du joueur</th>
+											<th style="width: 150px">Nb de parties jouées</th>
+
+										</tr>
+										<ui:repeat var="topJoueur"
+											value="#{jeuxManagedBean.listeTopJoueurJouer}"
+											varStatus="status">
+											<tr>
+												<td class="tg-1wig">#{status.index+1}</td>
+												<td class="tg-0lax">#{topJoueur.libelle}</td>
+												<td class="tg-0lax">#{topJoueur.nombre}</td>
+											</tr>
+										</ui:repeat>
+									</TBODY>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footer">
+		<a target="_blank" href="https://github.com/adminfaces/">
+			Copyright (C) 2017 - GamingLab </a>
+
+		<div class="pull-right hidden-xs" style="color: gray">
+			<i>1.0.0</i>
+		</div>
+	</ui:define>
+</ui:composition>

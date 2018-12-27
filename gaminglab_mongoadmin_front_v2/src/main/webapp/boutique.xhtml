@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="#{layoutMB.template}">
+
+	<ui:define name="head">
+		<title>GamingLab Admin</title>
+	</ui:define>
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml"></ui:include>
+	</ui:define>
+
+	<ui:define name="title">
+		<h2 id="title" class="align-center">Statistiques Boutique</h2>
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form>
+			<div class="ui-grid" style="margin-top: 10px">
+				<div class="ui-grid-row">
+
+					<div class="ui-grid-col-9">
+						<p:chart type="line"
+							model="#{boutiqueManagedBean.chartArticlesAchat}"
+							style="height:500px; width:95%;" />
+					</div>
+					<div class="ui-grid-col-3" style="margin-top: 90px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les 5 articles les plus achetés</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom de l'article</th>
+											<th>Nb d'articles vendus</th>
+
+										</tr>
+
+										<ui:repeat var="topArticle"
+											value="#{boutiqueManagedBean.listeTopArticlesAchat}"
+											varStatus="status">
+											<tr>
+												<td>#{status.index+1}</td>
+												<td>#{topArticle.libelle}</td>
+												<td>#{topArticle.nombre}</td>
+											</tr>
+										</ui:repeat>
+
+
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				<div class="ui-grid-row" style="margin-top: 50px">
+					<div class="ui-grid-col-9">
+						<p:chart type="line"
+							model="#{boutiqueManagedBean.chartArticlesVisite}"
+							style="height:500px; width:95%;" />
+					</div>
+
+					<div class="ui-grid-col-3" style="margin-top: 90px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les 5 articles les plus visités</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom de l'article</th>
+											<th style="width: 150px">Nb de visiteurs</th>
+
+										</tr>
+
+										<ui:repeat var="topArticleV"
+											value="#{boutiqueManagedBean.listeTopArticlesVisite}"
+											varStatus="statusV">
+											<tr>
+												<td class="tg-1wig">#{statusV.index+1}</td>
+												<td class="tg-0lax">#{topArticleV.libelle}</td>
+												<td class="tg-0lax">#{topArticleV.nombre}</td>
+											</tr>
+										</ui:repeat>
+
+
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+
+	<ui:define name="footer">
+		<a target="_blank" href="https://github.com/adminfaces/">
+			Copyright (C) 2017 - GamingLab </a>
+
+		<div class="pull-right hidden-xs" style="color: gray">
+			<i>1.0.0</i>
+		</div>
+	</ui:define>
+</ui:composition>
+

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="#{layoutMB.template}">
+
+	<ui:define name="head">
+		<title>Admin Starter</title>
+	</ui:define>
+
+	<ui:define name="menu">
+		<ui:include src="/includes/menu.xhtml"></ui:include>
+	</ui:define>
+
+	<ui:define name="title">
+		<h2 id="title" class="align-center">Statistiques Forum</h2>
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form>
+			<div class="ui-grid" style="margin-top: 60px">
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-12">
+						<p:chart type="line"
+							model="#{forumManagedBean.chartCategoriesConsulter}"
+							style="height:400px; width:95%;" />
+					</div>
+				</div>
+				<div class="ui-grid-row">
+					<div class="ui-grid-col-3" style="margin-top: 90px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les catégories les plus consultées</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom de la categorie</th>
+											<th>Nb de fois consulté</th>
+										</tr>
+
+										<ui:repeat var="topArticle"
+											value="#{forumManagedBean.topCategoriesConsulter}"
+											varStatus="status">
+											<tr>
+												<td>#{status.index+1}</td>
+												<td>#{topArticle.libelle}</td>
+												<td>#{topArticle.nombre}</td>
+											</tr>
+										</ui:repeat>
+
+
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+
+					<div class="ui-grid-col-3" style="margin-top: 90px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les sujets les plus commentés</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom du sujet</th>
+											<th>Nb de fois commenté</th>
+
+										</tr>
+
+										<ui:repeat var="topArticle"
+											value="#{forumManagedBean.topSujetsCommenter}"
+											varStatus="status">
+											<tr>
+												<td>#{status.index+1}</td>
+												<td>#{topArticle.libelle}</td>
+												<td>#{topArticle.nombre}</td>
+											</tr>
+										</ui:repeat>
+
+
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+					
+					<div class="ui-grid-col-3" style="margin-top: 90px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les sujets les plus notés</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom de du sujet</th>
+											<th>Nb de fois noté</th>
+
+										</tr>
+
+										<ui:repeat var="topArticle"
+											value="#{forumManagedBean.topSujetsNoter}"
+											varStatus="status">
+											<tr>
+												<td>#{status.index+1}</td>
+												<td>#{topArticle.libelle}</td>
+												<td>#{topArticle.nombre}</td>
+											</tr>
+										</ui:repeat>
+
+
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+					
+					<div class="ui-grid-col-3" style="margin-top: 90px">
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Les utilisateurs ayant le plus commenté les sujets</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body no-padding">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Nom de l'utilisateur</th>
+											<th>Nb de commentaires</th>
+
+										</tr>
+
+										<ui:repeat var="topArticle"
+											value="#{forumManagedBean.topJoueursCommenter}"
+											varStatus="status">
+											<tr>
+												<td>#{status.index+1}</td>
+												<td>#{topArticle.libelle}</td>
+												<td>#{topArticle.nombre}</td>
+											</tr>
+										</ui:repeat>
+
+
+									</tbody>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+
+	<ui:define name="footer">
+		<a target="_blank" href="https://github.com/adminfaces/">
+			Copyright (C) 2017 - GamingLab </a>
+
+		<div class="pull-right hidden-xs" style="color: gray">
+			<i>1.0.0</i>
+		</div>
+	</ui:define>
+</ui:composition>

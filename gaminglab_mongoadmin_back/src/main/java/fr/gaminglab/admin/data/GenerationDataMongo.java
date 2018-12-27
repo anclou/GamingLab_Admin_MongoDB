@@ -21,8 +21,8 @@ public class GenerationDataMongo {
 	private static final Integer MAX_ID_JEU = 14 + 1;
 	private static final Integer MAX_ID_CATEGORIE = 6 + 1;
 	private static final Integer MAX_ID_SUJET = 28 + 1;
-	private static final Integer NOMBRE_DONNEES_MAX_PAR_MOIS = 40;
-	private static final Integer NOMBRE_DONNEES_MIN_PAR_MOIS = 4;
+	public static final Integer NOMBRE_DONNEES_MAX_PAR_MOIS = 40;
+	public static final Integer NOMBRE_DONNEES_MIN_PAR_MOIS = 4;
 
 	private static Random random = new Random();
 
@@ -41,12 +41,16 @@ public class GenerationDataMongo {
 			for (int j = 0; j < nbRandom; j++) {
 				createArticleVisiteEtArticleAchat(daoArticleVisite,daoArticleAchat,mois);
 			}
+			
+			nbRandom = random.nextInt(NOMBRE_DONNEES_MAX_PAR_MOIS) + NOMBRE_DONNEES_MIN_PAR_MOIS;
 
 			for (int j = 0; j < nbRandom; j++) {
 				createCategorieConsulter(serviceForum, mois);
 				createSujetCommenter(serviceForum, mois);
 				createSujetNoter(serviceForum, mois);
 			}
+			
+			nbRandom = random.nextInt(NOMBRE_DONNEES_MAX_PAR_MOIS) + NOMBRE_DONNEES_MIN_PAR_MOIS;
 
 			for (int j = 0; j < nbRandom; j++) {
 				createJeuJouer(daoJeux, mois);

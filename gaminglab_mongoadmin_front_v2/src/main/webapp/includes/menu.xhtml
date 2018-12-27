@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ul class="sidebar-menu tree" data-widget="tree">
+        <li>
+            <p:link outcome="/index" onclick="clearBreadCrumbs()">
+                <i class="fa fa-home"></i>
+                <span>Accueil</span>
+            </p:link>
+        </li>
+        <li class="header">
+            Catégories
+        </li>
+        <li>
+            <p:link outcome="/boutique">
+                <i class="fa fa-shopping-basket"></i>
+                <span>Boutique</span>
+            </p:link>
+            <p:link outcome="/jeux">
+                <i class="fa fa-gamepad"></i>
+                <span>Jeux</span>
+            </p:link>
+            <p:link outcome="/forum">
+                <i class="fa fa-comments"></i>
+                <span>Forum</span>
+            </p:link>
+        </li>
+
+    </ul>
+
+</ui:composition>

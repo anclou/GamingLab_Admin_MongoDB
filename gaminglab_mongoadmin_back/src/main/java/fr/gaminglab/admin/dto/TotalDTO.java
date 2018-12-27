@@ -1,5 +1,7 @@
 package fr.gaminglab.admin.dto;
 
+import java.util.Comparator;
+
 public class TotalDTO {
 	
 	public TotalDTO(Integer mois, Integer nombre) {
@@ -30,4 +32,5 @@ public class TotalDTO {
 		this.nombre = nombre;
 	}
 	
+	public static Comparator<TotalDTO> byMois = Comparator.comparing(s -> s.mois);
 }
