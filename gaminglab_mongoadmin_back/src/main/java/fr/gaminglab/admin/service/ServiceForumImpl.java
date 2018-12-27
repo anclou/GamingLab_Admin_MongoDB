@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.web.client.RestTemplate;
 
 import fr.gaminglab.admin.dao.mongo.DaoCategorieConsulter;
-import fr.gaminglab.admin.dao.mongo.DaoJeuJouer;
 import fr.gaminglab.admin.dao.mongo.DaoSujetCommenter;
 import fr.gaminglab.admin.dao.mongo.DaoSujetNoter;
-import fr.gaminglab.admin.dto.CategorieDTO;
 import fr.gaminglab.admin.dto.GenericDTO;
 import fr.gaminglab.admin.dto.SujetDTO;
 import fr.gaminglab.admin.dto.TotalDTO;
@@ -17,10 +15,8 @@ import fr.gaminglab.admin.entities.CategorieConsulter;
 import fr.gaminglab.admin.entities.SujetCommenter;
 import fr.gaminglab.admin.entities.SujetNoter;
 import fr.gaminglab.admin.entities.Top;
-import fr.gaminglab.entity.communication.CategorieForum;
-import fr.gaminglab.entity.communication.SujetForum;
-import fr.gaminglab.entity.jeu.Jeu;
 import fr.gaminglab.entity.utilisateur.Joueur;
+import fr.gaminglab.forum.entity.CategorieForum;
 
 public class ServiceForumImpl implements IServiceForum {
 	
@@ -54,7 +50,7 @@ public class ServiceForumImpl implements IServiceForum {
 			System.out.println("TOP : top id : "+topCat.getId()+" / nombre : "+topCat.getNombre());
 			
 			//Peut être pas bon import de CategorieForum
-			CategorieDTO categorie = restTemplate.getForObject(base_url + FORUM + CATEGORIE + SLASH + topCat.getId(), CategorieDTO.class);
+			CategorieForum categorie = restTemplate.getForObject(base_url + FORUM + CATEGORIE + SLASH + topCat.getId(), CategorieForum.class);
 			String libelle = categorie.getLibelle();
 			
 			GenericDTO dto = new GenericDTO();
