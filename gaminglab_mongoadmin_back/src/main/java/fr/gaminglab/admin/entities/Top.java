@@ -8,10 +8,9 @@ public class Top {
 	public Top() {
 	}
 
-	public Top(Integer idArticle, Integer nombreAchat) {
-		super();
-		this.id = idArticle;
-		this.nombre = nombreAchat;
+	public Top(Integer id, Integer nombre) {
+		this.id = id;
+		this.nombre = nombre;
 	}
 
 	public Integer getId() {
