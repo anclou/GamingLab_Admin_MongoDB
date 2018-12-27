@@ -9,6 +9,7 @@ import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 
+import fr.gaminglab.admin.dto.GenericDTO;
 import fr.gaminglab.admin.dto.TotalDTO;
 import fr.gaminglab.admin.service.ServiceForumImpl;
 
@@ -17,6 +18,10 @@ public class ForumManagedBean {
 	private LineChartModel chartCategoriesConsulter;
 	private ServiceForumImpl serviceForum;
 	private List<TotalDTO> listeTotalCategoriesConsulter;
+	private List<GenericDTO> topCategoriesConsulter;
+	private List<GenericDTO> topSujetsCommenter;
+	private List<GenericDTO> topJoueursCommenter;
+	private List<GenericDTO> topSujetsNoter;
 	
 	public ForumManagedBean() {
 		serviceForum = new ServiceForumImpl();
@@ -25,6 +30,7 @@ public class ForumManagedBean {
 		// * CATEGORIE CONSULTER
 		// *
 		
+		//Total Catégories Consulter
 		chartCategoriesConsulter = new LineChartModel();
 		LineChartSeries serieCategories = new LineChartSeries();
 		listeTotalCategoriesConsulter = serviceForum.getTotalCategoriesConsulter();
@@ -62,6 +68,18 @@ public class ForumManagedBean {
 			yAxisAchat.setMin(minAchat-10);
 			yAxisAchat.setMax(maxAchat+10);	
 		}
+		
+		//Top Catégories Consulter
+		topCategoriesConsulter = serviceForum.getTop5CategoriesConsulter();
+		
+		//Top Sujets Commenter
+		topSujetsCommenter = serviceForum.getTop5SujetsCommenter();
+		
+		//Top Sujets Noter
+		topSujetsNoter = serviceForum.getTop5SujetsNoter();
+		
+		//Top Joueurs Commenter
+		topJoueursCommenter = serviceForum.getTop5JoueurCommenter();
 	}
 
 	public LineChartModel getChartCategoriesConsulter() {
@@ -71,6 +89,21 @@ public class ForumManagedBean {
 	public List<TotalDTO> getListeTotalCategoriesConsulter() {
 		return listeTotalCategoriesConsulter;
 	}
-	
+
+	public List<GenericDTO> getTopCategoriesConsulter() {
+		return topCategoriesConsulter;
+	}
+
+	public List<GenericDTO> getTopSujetsCommenter() {
+		return topSujetsCommenter;
+	}
+
+	public List<GenericDTO> getTopJoueursCommenter() {
+		return topJoueursCommenter;
+	}
+
+	public List<GenericDTO> getTopSujetsNoter() {
+		return topSujetsNoter;
+	}
 	
 }

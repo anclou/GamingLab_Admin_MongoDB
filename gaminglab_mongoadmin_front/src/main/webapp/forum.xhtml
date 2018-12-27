@@ -36,29 +36,77 @@
 		<h3 id="titre">Statistiques Forum</h3>
 		<div class="ui-grid" style="margin-top: 60px">
 			<div class="ui-grid-row">
-
-				<div class="ui-grid-col-9">
+			
+					<!-- Chart Total Catégories Consulter -->
 					<p:chart type="line" model="#{forumManagedBean.chartCategoriesConsulter}"
 						style="height:400px; width:95%;" />
+			</div>
+			
+			<div class="ui-grid-row">
+				
+				<!-- Tableau topCategoriesConsulter -->	
+				<div class="ui-grid-col-3" style="margin-top: 90px">	
+					<table class="tg">
+						<tr>
+							<th class="tg-vox4" colspan="3">Les catégories les plus consultées</th>
+						</tr>
+						<ui:repeat var="top" value="#{forumManagedBean.topCategoriesConsulter}" varStatus="status">
+							<tr>
+								<td class="tg-1wig">#{status.index+1}</td>
+								<td class="tg-0lax">#{top.libelle}</td>
+								<td class="tg-0lax">#{top.nombre}</td>
+							</tr>
+						</ui:repeat>
+					</table>
 				</div>
-
-<!-- 				<div class="ui-grid-col-3" style="margin-top: 90px"> -->
-					
-<!-- 					<table class="tg"> -->
-<!-- 						<tr> -->
-<!-- 							<th class="tg-vox4" colspan="3">Les jeux les plus joués</th> -->
-<!-- 						</tr> -->
-						
-<!-- 						<ui:repeat var="topArticle" value="#{forumManagedBean.listeTopJeuxJouer}" varStatus="status"> -->
-<!-- 							<tr> -->
-<!-- 								<td class="tg-1wig">#{status.index+1}</td> -->
-<!-- 								<td class="tg-0lax">#{topArticle.libelle}</td> -->
-<!-- 								<td class="tg-0lax">#{topArticle.nombre}</td> -->
-<!-- 							</tr> -->
-<!-- 						</ui:repeat> -->
-						
-<!-- 					</table> -->
-<!-- 				</div> -->
+				
+				<!-- Tableau topSujetsCommenter -->	
+				<div class="ui-grid-col-3" style="margin-top: 90px">
+					<table class="tg">
+						<tr>
+							<th class="tg-vox4" colspan="3">Les sujets les plus commentés</th>
+						</tr>
+						<ui:repeat var="top" value="#{forumManagedBean.topSujetsCommenter}" varStatus="status">
+							<tr>
+								<td class="tg-1wig">#{status.index+1}</td>
+								<td class="tg-0lax">#{top.libelle}</td>
+								<td class="tg-0lax">#{top.nombre}</td>
+							</tr>
+						</ui:repeat>
+					</table>
+				</div>
+				
+				<!-- Tableau topSujetsNoter -->	
+				<div class="ui-grid-col-3" style="margin-top: 90px">
+					<table class="tg">
+						<tr>
+							<th class="tg-vox4" colspan="3">Les sujets les plus notés</th>
+						</tr>
+						<ui:repeat var="top" value="#{forumManagedBean.topSujetsNoter}" varStatus="status">
+							<tr>
+								<td class="tg-1wig">#{status.index+1}</td>
+								<td class="tg-0lax">#{top.libelle}</td>
+								<td class="tg-0lax">#{top.nombre}</td>
+							</tr>
+						</ui:repeat>
+					</table>
+				</div>
+				
+				<!-- Tableau topJoueursCommenter -->	
+				<div class="ui-grid-col-3" style="margin-top: 90px">
+					<table class="tg">
+						<tr>
+							<th class="tg-vox4" colspan="3">Les utilisateurs ayant le plus commenté les sujets</th>
+						</tr>
+						<ui:repeat var="top" value="#{forumManagedBean.topJoueursCommenter}" varStatus="status">
+							<tr>
+								<td class="tg-1wig">#{status.index+1}</td>
+								<td class="tg-0lax">#{top.libelle}</td>
+								<td class="tg-0lax">#{top.nombre}</td>
+							</tr>
+						</ui:repeat>
+					</table>
+				</div>
 				
 			</div>
 			

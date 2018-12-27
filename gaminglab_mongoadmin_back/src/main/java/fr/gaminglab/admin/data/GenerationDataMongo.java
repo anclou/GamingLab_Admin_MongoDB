@@ -10,6 +10,8 @@ import fr.gaminglab.admin.entities.ArticleAchat;
 import fr.gaminglab.admin.entities.ArticleVisite;
 import fr.gaminglab.admin.entities.CategorieConsulter;
 import fr.gaminglab.admin.entities.JeuJouer;
+import fr.gaminglab.admin.entities.SujetCommenter;
+import fr.gaminglab.admin.entities.SujetNoter;
 import fr.gaminglab.admin.service.ServiceForumImpl;
 
 public class GenerationDataMongo {
@@ -18,6 +20,7 @@ public class GenerationDataMongo {
 	private static final Integer MAX_ID_UTILISATEUR = 21 + 1;
 	private static final Integer MAX_ID_JEU = 14 + 1;
 	private static final Integer MAX_ID_CATEGORIE = 6 + 1;
+	private static final Integer MAX_ID_SUJET = 28 + 1;
 	private static final Integer NOMBRE_DONNEES_PAR_MOIS = 40;
 
 	public static void main(String[] args) {
@@ -28,8 +31,9 @@ public class GenerationDataMongo {
 		ServiceForumImpl serviceForum = new ServiceForumImpl();
 		
 		for (int mois = 1; mois <= 12; mois++) {
-			//Modif Chris 26/12
 			Random random = new Random();
+			
+			//Modif Chris 26/12
 			Integer nbRandom = random.nextInt(NOMBRE_DONNEES_PAR_MOIS);
 			
 			for (int j = 0; j < nbRandom; j++) {
@@ -37,9 +41,10 @@ public class GenerationDataMongo {
 				createJeuJouer(daoJeux, mois);
 				createArticleVisite(daoArticleVisite, mois);
 				createCategorieConsulter(serviceForum, mois);
+				createSujetCommenter(serviceForum, mois);
+				createSujetNoter(serviceForum, mois);
 			}
 		}
-
 	}
 
 	//JeuJouer
@@ -116,6 +121,44 @@ public class GenerationDataMongo {
 		}while(idCategorieRandom == 0 || idUtilisateurRandom == 0);
 
 		return new CategorieConsulter (null, idCategorieRandom, idUtilisateurRandom, mois);
+	}
+	
+	//SujetCommenter
+	private static void createSujetCommenter (ServiceForumImpl serviceForum, int mois) {
+		SujetCommenter sujetCommenter = getSujetCommenter(mois);
+		serviceForum.create(sujetCommenter);
+		System.out.println(sujetCommenter.toString());
+	}
+	
+	public static SujetCommenter getSujetCommenter(Integer mois) {
+		Integer idSujetRandom;
+		Integer idUtilisateurRandom;
+		Random random = new Random();
+		do{
+			idUtilisateurRandom = random.nextInt(MAX_ID_UTILISATEUR);
+			idSujetRandom = random.nextInt(MAX_ID_SUJET);
+		}while(idSujetRandom == 0 || idUtilisateurRandom == 0);
+
+		return new SujetCommenter (null, idSujetRandom, idUtilisateurRandom, mois);
+	}
+	
+	//SujetNoter
+	private static void createSujetNoter (ServiceForumImpl serviceForum, int mois) {
+		SujetNoter sujetNoter = getSujetNoter(mois);
+		serviceForum.create(sujetNoter);
+		System.out.println(sujetNoter.toString());
+	}
+	
+	public static SujetNoter getSujetNoter(Integer mois) {
+		Integer idSujetRandom;
+		Integer idUtilisateurRandom;
+		Random random = new Random();
+		do{
+			idUtilisateurRandom = random.nextInt(MAX_ID_UTILISATEUR);
+			idSujetRandom = random.nextInt(MAX_ID_SUJET);
+		}while(idSujetRandom == 0 || idUtilisateurRandom == 0);
+
+		return new SujetNoter (null, idSujetRandom, idUtilisateurRandom, mois);
 	}
 	
 }

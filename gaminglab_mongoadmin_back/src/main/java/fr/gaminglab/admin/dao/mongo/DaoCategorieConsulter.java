@@ -14,6 +14,7 @@ import com.mongodb.client.MongoDatabase;
 import fr.gaminglab.admin.dao.AbstractDAO;
 import fr.gaminglab.admin.dto.TotalDTO;
 import fr.gaminglab.admin.entities.CategorieConsulter;
+import fr.gaminglab.admin.entities.Top;
 
 public class DaoCategorieConsulter extends AbstractDAO {
 	
@@ -48,6 +49,39 @@ public class DaoCategorieConsulter extends AbstractDAO {
 		return results;
 	}
 	
+	public List<Top> getTop5CategoriesConsulter() {
+		List<Document> operations = new ArrayList<Document>();
+
+		final List<Top> results = new ArrayList<Top>();
+
+		Document group = Document.parse("{$group : { '_id' : '$idCategorie', 'nombre' : {'$sum': 1} } }");
+		operations.add(group);
+		
+		Document sort = Document.parse("{$sort : {'nombre': -1} }");
+		operations.add(sort);
+		
+		Document limit = Document.parse("{$limit : 5}");
+		operations.add(limit);
+
+		AggregateIterable<Document> iterable = coll.aggregate(operations);
+		
+		iterable.forEach(new Block<Document>() {
+			Top topCat = null;
+		    @Override
+		    public void apply(final Document document) {
+		    	topCat = new Top();
+		    	
+		    	topCat.setId((Integer)document.get("_id"));
+		    	topCat.setNombre((Integer)document.get("nombre"));
+				
+		    	results.add(topCat);
+		    }
+		});
+		
+		return results;
+		
+	}
+	
 	public CategorieConsulter create(CategorieConsulter categorieConsulter) {
 		Document doc = new Document("idCategorie", categorieConsulter.getIdCategorie())
 				.append("idUtilisateur", categorieConsulter.getIdUtilisateur())
@@ -56,4 +90,5 @@ public class DaoCategorieConsulter extends AbstractDAO {
 		return categorieConsulter;
 	}
 
+	
 }

@@ -49,8 +49,6 @@ public class DaoArticleVisite extends AbstractDAO {
 	}
 	
 	public List<Top> getTop5ArticlesVisite() {
-		// 	Clé : id de l'Article
-		//	Valeur : nombre de fois l'article a été acheté
 		
 		List<Document> operations = new ArrayList<Document>();
 
