@@ -29,11 +29,6 @@ public class BoutiqueManagedBean {
 	private LineChartModel chartArticlesVisite;
 	private List<GenericDTO> listeTopArticlesVisite;
 	private List<TotalDTO> listeTotalArticlesVisite;
-	private String theme = "cupertino";
-
-	public String getTheme() {
-		return theme;
-	}
 
 	public BoutiqueManagedBean() {
 		serviceBoutique = new ServiceBoutiqueImpl();
@@ -81,7 +76,7 @@ public class BoutiqueManagedBean {
 		Axis yAxisAchat = chartArticlesAchat.getAxis(AxisType.Y);
 		
 		if (minAchat != null && maxAchat != null) {
-			yAxisAchat.setMin(minAchat-GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);
+			yAxisAchat.setMin(0);
 			yAxisAchat.setMax(maxAchat+GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);	
 		}
 		
@@ -130,7 +125,7 @@ public class BoutiqueManagedBean {
 		Axis yAxisVisite = chartArticlesVisite.getAxis(AxisType.Y);
 		
 		if (minVisite != null && maxVisite != null) {
-			yAxisVisite.setMin(minVisite-GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);
+			yAxisVisite.setMin(0);
 			yAxisVisite.setMax(maxVisite+GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);	
 		}
 		

@@ -21,8 +21,8 @@ public class GenerationDataMongo {
 	private static final Integer MAX_ID_JEU = 14 + 1;
 	private static final Integer MAX_ID_CATEGORIE = 6 + 1;
 	private static final Integer MAX_ID_SUJET = 28 + 1;
-	public static final Integer NOMBRE_DONNEES_MAX_PAR_MOIS = 40;
-	public static final Integer NOMBRE_DONNEES_MIN_PAR_MOIS = 4;
+	public static final Integer NOMBRE_DONNEES_MAX_PAR_MOIS = 40000;
+	public static final Integer NOMBRE_DONNEES_MIN_PAR_MOIS = 4000;
 
 	private static Random random = new Random();
 

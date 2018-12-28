@@ -72,7 +72,7 @@ public class ForumManagedBean {
 		Axis yAxisAchat = chartCategoriesConsulter.getAxis(AxisType.Y);
 		
 		if (minAchat != null && maxAchat != null) {
-			yAxisAchat.setMin(minAchat-GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);
+			yAxisAchat.setMin(0);
 			yAxisAchat.setMax(maxAchat+GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);	
 		}
 		

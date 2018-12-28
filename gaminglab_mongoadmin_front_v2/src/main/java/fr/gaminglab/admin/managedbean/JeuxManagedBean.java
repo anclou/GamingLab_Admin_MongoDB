@@ -64,7 +64,7 @@ public class JeuxManagedBean {
 		Axis yAxisJeux = chartJeuJouer.getAxis(AxisType.Y);
 		
 		if (minJeux != null && maxJeux != null) {
-			yAxisJeux.setMin(minJeux-GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);
+			yAxisJeux.setMin(0);
 			yAxisJeux.setMax(maxJeux+GenerationDataMongo.NOMBRE_DONNEES_MIN_PAR_MOIS);
 		}
 		
